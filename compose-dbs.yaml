@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  ph-mongo:
+    image: mongo
+    container_name: ph-mongo
+    restart: always
+    network_mode: "host"
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    volumes:
+      - ./data/mongodb:/data/db
+
+  ph-mongo-express:
+    image: mongo-express
+    container_name: ph-mongo-express
+    restart: always
+    network_mode: "host"
+    env_file:
+      - .env
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_PASSWORD}
+    depends_on:
+      - ph-mongo
