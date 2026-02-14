@@ -16,4 +16,5 @@ export const CONSTANTS = {
     PASS: getEnv('MONGODB_PASSWORD'),
     URI: getEnv('MONGODB_URI'),
   },
+  DARK_MODE: getEnv('DARK_MODE') === 'true',
 } as const;

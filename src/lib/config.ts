@@ -11,4 +11,5 @@ export const CONFIG = {
     USERS: 'users',
     WORKFLOWS: 'workflows',
   },
+  THEME: CONSTANTS.DARK_MODE ? 'dark' : 'light',
 } as const;
