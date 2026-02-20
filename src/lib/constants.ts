@@ -7,7 +7,7 @@ export const getEnv = (key: string, required: boolean = false): string => {
 };
 
 export const CONSTANTS = {
-  ENV: getEnv('NODE_ENV') || 'production',
+  APP_ENV: process.env.NEXT_PUBLIC_APP_ENV || 'production',
   DB_METADATA: {
     NAME: getEnv('MONGODB_DB_NAME') || 'phinite',
     HOST: getEnv('MONGODB_HOST') || 'localhost',
