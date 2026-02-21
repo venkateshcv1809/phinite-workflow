@@ -2,6 +2,7 @@
 
 import { EmailSchema } from '@/lib/auth/schemas';
 import { UserController } from '@/lib/db/controllers/user-controller';
+import { generateToken, setAuthCookie } from './jwt';
 
 export async function loginUser(email: string) {
   const validationResult = EmailSchema.safeParse(email);
@@ -14,14 +15,19 @@ export async function loginUser(email: string) {
   }
 
   try {
-    const user = await UserController.upsert(email);
+    const response = await UserController.upsert(email);
+    const user = {
+      id: response.id,
+      email: response.email
+    };
+
+    // Generate JWT token and set cookie
+    const token = await generateToken(user);
+    await setAuthCookie(token);
 
     return {
       success: true,
-      user: {
-        id: user.id,
-        email: user.email
-      }
+      user
     };
   } catch (error) {
     console.error('Login action error:', error);
