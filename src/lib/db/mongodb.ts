@@ -2,7 +2,7 @@ import 'server-only';
 import { MongoClient } from 'mongodb';
 import { CONFIG } from '../config';
 
-const uri = process.env.MONGODB_URI!;
+const uri = CONFIG.MONGODB_URI!;
 let clientPromise: Promise<MongoClient>;
 
 if (CONFIG.IS_LOCAL) {
