@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { EmailSchema } from '@/lib/auth/schemas';
 import { loginUser } from '@/lib/auth/actions';
+import logger from '@/lib/logger';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -35,7 +36,7 @@ export default function LoginPage() {
 
       router.push('/dashboard');
     } catch (error) {
-      console.error('Login error:', error);
+      logger.error('Login error:', error);
       setFieldError('Network error. Please try again.');
     }
   };

@@ -2,7 +2,8 @@
 
 import { EmailSchema } from '@/lib/auth/schemas';
 import { UserController } from '@/lib/db/controllers/user-controller';
-import { generateToken, setAuthCookie } from './jwt';
+import { clearAuthCookie, generateToken, setAuthCookie } from './jwt';
+import logger from '../logger';
 
 export async function loginUser(email: string) {
   const validationResult = EmailSchema.safeParse(email);
@@ -30,10 +31,20 @@ export async function loginUser(email: string) {
       user
     };
   } catch (error) {
-    console.error('Login action error:', error);
+    logger.error('Login action error:', error);
     return {
       success: false,
       error: 'Internal server error'
     };
+  }
+}
+
+export async function logoutUser(): Promise<{ success: boolean; error?: string }> {
+  try {
+    await clearAuthCookie();
+    return { success: true };
+  } catch (error) {
+    logger.error('Logout action error:', error);
+    return { success: false, error: 'Internal server error' };
   }
 }

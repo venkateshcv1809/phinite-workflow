@@ -40,3 +40,8 @@ export async function setAuthCookie(token: string): Promise<void> {
     path: '/',
   });
 }
+
+export async function clearAuthCookie(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.delete('auth-token');
+}

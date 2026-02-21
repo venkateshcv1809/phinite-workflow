@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loginUser } from '@/lib/auth/actions';
+import logger from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Login API error:', error);
+    logger.error('Login API error:', error);
     return NextResponse.json(
       {
         success: false,

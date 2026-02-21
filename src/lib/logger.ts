@@ -19,7 +19,7 @@ export class Logger {
     this.logger.info(data, msg);
   }
 
-  error(msg: string, data: Record<string, unknown> = {}) {
+  error(msg: string, data: unknown = {}) {
     this.logger.error(data, msg);
   }
 

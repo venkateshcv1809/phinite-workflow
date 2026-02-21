@@ -2,12 +2,19 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { logoutUser } from '@/lib/auth/actions';
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const isLoggedIn = !!false;
   const isLoginPage = pathname === '/login';
+
+  const handleLogout = async () => {
+    await logoutUser();
+    router.push('/');
+  };
 
   return (
     <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-black transition-colors">
@@ -28,7 +35,10 @@ export default function Header() {
         {!isLoginPage && (
           <>
             {isLoggedIn ? (
-              <button className="text-sm text-slate-600 dark:text-slate-400">
+              <button
+                onClick={handleLogout}
+                className="text-sm text-slate-600 dark:text-slate-400"
+              >
                 Logout
               </button>
             ) : (
