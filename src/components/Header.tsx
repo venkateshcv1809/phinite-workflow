@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
   const isLoggedIn = !!false;
+  const isLoginPage = pathname === '/login';
 
   return (
     <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-black transition-colors">
@@ -20,17 +25,21 @@ export default function Header() {
       </Link>
 
       <div className="flex items-center gap-4">
-        {isLoggedIn ? (
-          <button className="text-sm text-slate-600 dark:text-slate-400">
-            Logout
-          </button>
-        ) : (
-          <Link
-            href="/login"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold"
-          >
-            Login
-          </Link>
+        {!isLoginPage && (
+          <>
+            {isLoggedIn ? (
+              <button className="text-sm text-slate-600 dark:text-slate-400">
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+              >
+                Login
+              </Link>
+            )}
+          </>
         )}
       </div>
     </nav>

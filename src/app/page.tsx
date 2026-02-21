@@ -7,7 +7,7 @@ export default async function HomePage() {
   const buttonText = isLoggedIn ? 'Go to Dashboard' : 'Get Started';
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-full px-4 text-center bg-white dark:bg-black transition-colors duration-300">
+    <div className="h-[calc(100vh-4rem)] flex items-center justify-center px-4 text-center bg-white dark:bg-black transition-colors duration-300 overflow-hidden">
       <div className="max-w-3xl">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
           Phinite <span className="text-blue-600">Workflow</span>
