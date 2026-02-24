@@ -52,7 +52,7 @@ export default function LoginPage() {
 
   return (
     <div className="h-[calc(100vh-4rem)] flex items-center justify-center bg-white dark:bg-black overflow-hidden">
-      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-8">
+      <div className="max-w-md w-full bg-white dark:bg-[#141414] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-8">
         <div>
           <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
             Login to Phinite

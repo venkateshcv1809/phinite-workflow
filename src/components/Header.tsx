@@ -19,7 +19,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 transition-colors shadow-md">
+    <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#141414] transition-colors shadow-md">
       <Link href="/" className="flex items-center gap-3">
         <Image
           src="/vercel.svg"

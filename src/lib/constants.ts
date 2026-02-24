@@ -17,5 +17,5 @@ export const CONSTANTS = {
     URI: getEnv('MONGODB_URI'),
   },
   JWT: getEnv('JWT_SECRET'),
-  DARK_MODE: getEnv('DARK_MODE') === 'true',
+  DARK_MODE: process.env.NEXT_PUBLIC_DARK_MODE === 'true',
 } as const;

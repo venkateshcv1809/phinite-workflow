@@ -31,7 +31,7 @@ export default function HomePage() {
 
           <Link
             href="/docs"
-            className="px-8 py-4 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl font-bold"
+            className="px-8 py-4 bg-slate-100 dark:bg-[#141414] text-slate-900 dark:text-slate-100 rounded-xl font-bold"
           >
             Documentation
           </Link>
