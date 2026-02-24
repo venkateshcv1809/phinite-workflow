@@ -19,7 +19,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-black transition-colors">
+    <nav className="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 transition-colors shadow-md">
       <Link href="/" className="flex items-center gap-3">
         <Image
           src="/vercel.svg"
@@ -39,7 +39,7 @@ export default function Header() {
             {isLoggedIn ? (
               <button
                 onClick={handleLogout}
-                className="text-sm text-slate-600 dark:text-slate-400"
+                className="text-sm font-bold text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 hover:bg-blue-100 dark:hover:bg-blue-900 px-4 py-2 rounded-md transition-colors cursor-pointer border border-blue-300 dark:border-blue-600"
               >
                 Logout
               </button>
