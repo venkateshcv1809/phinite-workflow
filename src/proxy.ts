@@ -11,7 +11,7 @@ export default async function proxy(request: NextRequest) {
 
   const { pathname } = new URL(request.url);
 
-  if (pathname === '/login' || pathname.startsWith('/api/auth/login')) {
+  if (pathname === '/' || pathname.startsWith('/api/auth/login')) {
     return NextResponse.next();
   }
 
@@ -23,6 +23,9 @@ export default async function proxy(request: NextRequest) {
         { success: false, error: 'Authentication required' },
         { status: 401 }
       );
+    }
+    if (pathname === '/login') {
+      return NextResponse.next();
     }
     return NextResponse.redirect(new URL('/login', request.url));
   }
@@ -47,7 +50,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|.*\\..*).*)'],
 };

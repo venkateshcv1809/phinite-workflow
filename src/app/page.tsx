@@ -1,7 +1,10 @@
-import Link from 'next/link';
+'use client';
 
-export default async function HomePage() {
-  const isLoggedIn = !!true;
+import Link from 'next/link';
+import { useAuthStore } from '@/lib/stores/authStore';
+
+export default function HomePage() {
+  const { isLoggedIn } = useAuthStore();
 
   const buttonHref = isLoggedIn ? '/dashboard' : '/login';
   const buttonText = isLoggedIn ? 'Go to Dashboard' : 'Get Started';

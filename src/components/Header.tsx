@@ -4,15 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { logoutUser } from '@/lib/auth/actions';
+import { useAuthStore } from '@/lib/stores/authStore';
 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const isLoggedIn = !!false;
+  const { isLoggedIn, clearAuth } = useAuthStore();
   const isLoginPage = pathname === '/login';
 
   const handleLogout = async () => {
     await logoutUser();
+    clearAuth();
     router.push('/');
   };
 

@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 import { EmailSchema } from '@/lib/auth/schemas';
 import { loginUser } from '@/lib/auth/actions';
 import logger from '@/lib/logger';
+import { useAuthStore } from '@/lib/stores/authStore';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [fieldError, setFieldError] = useState('');
   const router = useRouter();
+  const { setAuth } = useAuthStore();
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ export default function LoginPage() {
         return;
       }
 
+      setAuth(result.user!);
       router.push('/dashboard');
     } catch (error) {
       logger.error('Login error:', error);
