@@ -1,8 +1,9 @@
 'use server';
 
-import { SignJWT} from 'jose';
+import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 import { CONFIG } from '../config';
+import logger from '../logger';
 
 const JWT_SECRET = new TextEncoder().encode(CONFIG.JWT);
 
@@ -28,6 +29,24 @@ export async function generateToken(payload: { id: string; email: string }): Pro
     .sign(JWT_SECRET);
 
   return jwt;
+}
+
+export async function verifyToken(token: string): Promise<TokenPayload | null> {
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET, {
+      algorithms: ['HS256'],
+    });
+
+    return {
+      id: String(payload.id),
+      email: String(payload.email),
+      iat: Number(payload.iat),
+      exp: Number(payload.exp),
+    };
+  } catch (error) {
+    logger.error('JWT verification failed:', error);
+    return null;
+  }
 }
 
 export async function setAuthCookie(token: string): Promise<void> {
