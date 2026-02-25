@@ -11,6 +11,7 @@ export const CONFIG = {
   DB_COLLECTIONS: {
     USERS: 'users',
     WORKFLOWS: 'workflows',
+    JOBS: 'jobs',
   },
   THEME: CONSTANTS.DARK_MODE ? 'dark' : 'light',
 } as const;
